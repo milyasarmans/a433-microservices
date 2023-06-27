@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  item-db:
+    # Menggunakan image item-app dari Docker Hub
+    image: mongo:3
+    # Menggunakan image item-app dari Docker Hub
+    volumes:
+      - app-db:/data/db
+    # Menerapkan restart policy pada berkas docker-compose.yml agar container selalu restart ketika terhenti.
+    restart: always
+
+  item-app:
+    # Menggunakan image item-app dari Docker Hub
+    image: milyasarmans/item-app:v1
+    # Menggunakan image item-app dari Docker Hub
+    ports:
+      - 80:8080
+    # Memastikan Menggunakan image item-app dari Docker Hub
+    depends_on:
+      - item-db
+    # Menerapkan restart policy pada berkas docker-compose.yml agar container selalu restart ketika terhenti.
+    restart: always
+
+volumes:
+  app-db:
