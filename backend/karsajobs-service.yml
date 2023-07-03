@@ -1,0 +1,27 @@
+# API versi 1
+apiVersion: v1
+
+# object = Service
+kind: Service
+
+# metadata
+metadata:
+  # backend
+  name: karsajobs-microservices
+  #labels
+  labels:
+    app: karsajobs
+    tier: backend
+
+# spesifikasi
+spec:
+  # port dari service
+  ports:
+    - name: default
+      port: 8080
+      protocol: TCP
+  # selector
+  selector:
+    app: karsajobs
+    tier: backend
+  type: NodePort

@@ -1,0 +1,17 @@
+# API versi 1
+apiVersion: v1
+
+# object = ConfigMap
+kind: ConfigMap
+
+# metadata
+metadata:
+  # nama
+  name: mongo-config
+
+# data yang akan dimap
+data:
+  # conf
+  mongo.conf: |
+    storage:
+      dbPath:/data/db

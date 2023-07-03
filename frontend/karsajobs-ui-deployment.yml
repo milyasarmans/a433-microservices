@@ -1,0 +1,37 @@
+# API versi 1
+apiVersion: apps/v1
+
+# object = deployment
+kind: Deployment
+
+# metadata
+metadata:
+  # nama
+  name: karsajobs-ui
+  # labels
+  labels:
+    app: karsajobs
+    tier: frontend
+
+# spesifikasi
+spec:
+  # buat replica
+  replicas: 1
+  # select matchlabels ke karsajobs
+  selector:
+    matchLabels:
+      app: karsajobs
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: karsajobs
+        tier: frontend
+    spec:
+      containers:
+        - name: karsajobs-ui
+          # image
+          image: milyasarmans/karsajobs-ui:latest
+          # port
+          ports:
+            - containerPort: 8000

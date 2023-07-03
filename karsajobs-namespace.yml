@@ -1,0 +1,11 @@
+# API versi 1
+apiVersion: v1
+
+# object = namespace
+kind: Namespace
+
+# metadata
+metadata:
+  name: karsajobs
+  labels:
+    app: karsajobs

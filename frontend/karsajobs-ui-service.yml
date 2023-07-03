@@ -1,0 +1,27 @@
+# API versi 1
+apiVersion: v1
+
+# object = Service
+kind: Service
+
+# metadata
+metadata:
+  # nama
+  name: karsajobs-ui
+  #labels
+  labels:
+    app: karsajobs
+    tier: frontend
+
+# spesifikasi
+spec:
+  # port dari service
+  ports:
+    - name: default
+      port: 8000
+      protocol: TCP
+  # selector
+  selector:
+    app: karsajobs
+    tier: frontend
+  type: NodePort
