@@ -6,7 +6,7 @@ docker build -t karsajobs:latest .
 docker image ls
 
 # mengubah nama image agar sesuai dengan format Docker Hub
-docker tag karsajobs-ui:latest milyasarmans/karsajobs:latest
+docker tag karsajobs:latest milyasarmans/karsajobs:latest
 
 # login ke Docker Hub
 docker login
