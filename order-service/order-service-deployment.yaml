@@ -1,0 +1,43 @@
+# Menggunakan API untuk Deployment.
+apiVersion: apps/v1
+# Membuat objek 
+kind: Deployment  
+metadata:
+  name: order-service  
+  labels:
+    app: order-service  
+spec:
+  # Jumlah pod
+  replicas: 1  
+  selector:
+    matchLabels:
+      # Label Pod 
+      app: order-service  
+  template:
+    metadata:
+      labels:
+       # Label setiap Pod
+        app: order-service 
+    spec:
+      containers:
+        # Image yang digunakan
+        - image: milyasarmans/order-service:latest  
+          # Nama container.
+          name: order-service  
+          # Port dalam container.
+          ports:
+            - containerPort: 3000  
+          env:
+            - name: PORT
+              # Variabel environment
+              value: "3000"  
+            - name: RABBITMQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  # Nama berisi password RabbitMQ.
+                  name: my-release-rabbitmq  
+                  # Kunci berisi password RabbitMQ.
+                  key: rabbitmq-password  
+            - name: AMQP_URL
+              # URL RabbitMQ.
+              value: amqp://user:$(RABBITMQ_PASSWORD)@$(MY_RELEASE_RABBITMQ_SERVICE_HOST):5672  
