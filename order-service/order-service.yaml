@@ -1,0 +1,19 @@
+# Menggunakan API untuk Service.
+apiVersion: v1
+# Membuat objek  
+kind: Service
+metadata:
+  labels:
+    # Label mengidentifikasi Service.
+    app: order-service
+  # Nama Service.
+  name: order-service
+spec:
+  ports:
+    # Protokol
+    - protocol: TCP
+      # Port 
+      port: 3000
+  selector:
+    # Label Pod
+    app: order-service
